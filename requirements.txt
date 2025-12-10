@@ -1,0 +1,30 @@
+# Python Dependencies for Plantalyze Backend
+# Install with: pip install -r requirements.txt
+
+# Web Framework
+flask==3.0.0
+flask-cors==4.0.0
+gunicorn==21.2.0
+
+# Deep Learning - TensorFlow (for UNet)
+tensorflow==2.15.0
+keras==2.15.0
+
+# Deep Learning - PyTorch (for ShuffleNet)
+torch==2.1.0
+torchvision==0.16.0
+
+# Computer Vision
+opencv-python==4.8.1.78
+# Uncomment below if you want xphoto module for better white balance
+# opencv-contrib-python==4.8.1.78
+
+# Image Processing
+Pillow==10.1.0
+scikit-image==0.22.0
+
+# Numerical Computing
+numpy==1.24.3
+
+# Utilities
+python-dotenv==1.0.0
