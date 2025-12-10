@@ -1,5 +1,4 @@
 # Gunicorn configuration for Railway deployment
-import multiprocessing
 import os
 
 # Bind to PORT provided by Railway
