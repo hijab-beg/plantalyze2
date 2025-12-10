@@ -1,6 +1,6 @@
 # Set the Python version
 [phases.setup]
-nixPkgs = ["python311"]
+nixPkgs = ["python311", "stdenv.cc.cc.lib", "libglvnd", "glib"]
 
 # Install dependencies into a virtual environment
 [phases.install]
