@@ -2,16 +2,9 @@
 # This tells Railway to build the backend Python application
 
 [phases.setup]
-# Python 3.11 with system dependencies for OpenCV and TensorFlow
-nixPkgs = [
-  "python311",
-  "gcc",
-  "g++",
-  "glib",
-  "libGL",
-  "libGLU",
-  "libglib"
-]
+# Python 3.11 with system dependencies for OpenCV, TensorFlow, and PyTorch
+nixPkgs = ["python311"]
+aptPkgs = ["libgl1", "libglib2.0-0", "libsm6", "libxext6", "libxrender-dev", "libgomp1", "libgthread-2.0-0"]
 
 [phases.install]
 cmds = ["pip install --upgrade pip", "pip install -r backend/requirements.txt"]
