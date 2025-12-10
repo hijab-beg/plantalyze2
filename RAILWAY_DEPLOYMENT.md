@@ -36,22 +36,25 @@ A full-stack web application for plant disease detection using UNet segmentation
    - Click "New Project"
    - Select "Deploy from GitHub repo"
    - Choose `hijab-beg/plantalyze2`
+   - Railway will automatically detect the configuration from `nixpacks.toml`
 
 2. **Upload Model File:**
    - After deployment, you'll need to upload `unet_model.h5` to Railway
    - Option A: Use Railway CLI to upload the model
    - Option B: Use cloud storage (AWS S3, Google Cloud Storage) and download on startup
 
-3. **Set Environment Variables:**
+3. **Set Environment Variables (Optional):**
    ```
-   PORT=5000
+   PORT=5000  # Railway sets this automatically
    FLASK_ENV=production
    ```
 
-4. **Configure Build:**
-   - Railway will auto-detect Python and use `railway.json` config
-   - Build command: `pip install -r backend/requirements.txt`
-   - Start command: `cd backend && gunicorn app:app --bind 0.0.0.0:$PORT`
+4. **Automatic Build Configuration:**
+   - Railway uses the `nixpacks.toml` configuration which:
+     - Installs Python 3.11 with required system dependencies
+     - Installs Python packages from `backend/requirements.txt`
+     - Starts the app with gunicorn using `backend/gunicorn.conf.py`
+   - No manual configuration needed!
 
 5. **Update Frontend:**
    - Copy your Railway backend URL (e.g., `https://plantalyze.up.railway.app`)
@@ -156,6 +159,7 @@ The UNet model produces a 3-class segmentation mask:
 plantalyze2/
 ├── backend/
 │   ├── app.py                 # Flask API
+│   ├── gunicorn.conf.py       # Gunicorn production config
 │   ├── preprocessing.py       # Image preprocessing
 │   ├── segmentation.py        # UNet model
 │   ├── requirements.txt       # Python dependencies
@@ -164,11 +168,35 @@ plantalyze2/
 │   ├── pages/
 │   │   └── Dashboard.tsx     # Main analysis UI
 │   └── ...
-├── railway.json              # Railway config
+├── nixpacks.toml             # Nixpacks build configuration
+├── railway.json              # Railway deploy config
 ├── Procfile                  # Process definition
-└── runtime.txt              # Python version
+└── runtime.txt               # Python version
 
 ```
+
+## Railway Configuration Files
+
+The repository includes several files for Railway deployment:
+
+- **`nixpacks.toml`**: Main build configuration
+  - Specifies Python 3.11
+  - Installs system dependencies for OpenCV (libgl1, libglib2.0-0, etc.)
+  - Runs `pip install -r backend/requirements.txt`
+  - Starts with gunicorn using the config file
+
+- **`backend/gunicorn.conf.py`**: Production server configuration
+  - Binds to Railway's PORT environment variable
+  - Configured with 1 worker (ML models are memory-intensive)
+  - 120-second timeout for ML inference
+  - Proper logging to stdout/stderr
+
+- **`railway.json`**: Railway-specific deployment settings
+  - Uses Nixpacks builder
+  - Restart policy on failure
+
+- **`Procfile`**: Process definition for Railway
+- **`runtime.txt`**: Specifies Python 3.11.0
 
 ## Notes
 
