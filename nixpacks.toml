@@ -1,4 +1,3 @@
-
 # Set the Python version
 [phases.setup]
 nixPkgs = ["python311"]
@@ -9,6 +8,10 @@ cmds = [
     "python3 -m venv .venv",
     ".venv/bin/pip install -r backend/requirements.txt"
 ]
+
+# OVERRIDE the build phase to do nothing (prevents Deno error)
+[phases.build]
+cmds = []
 
 # Force the correct Start Command using the virtual environment
 [phases.start]
