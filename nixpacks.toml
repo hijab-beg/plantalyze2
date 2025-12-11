@@ -1,18 +1,19 @@
-# Set the Python version
+# Install Python and System Libraries (Fixes libstdc++ error)
 [phases.setup]
-nixPkgs = ["python311", "stdenv.cc.cc.lib", "libglvnd", "glib"]
+nixPkgs = ["python311"]
+aptPkgs = ["libstdc++6", "libgl1", "libglib2.0-0", "libsm6", "libxext6", "libxrender1"]
 
-# Install dependencies into a virtual environment
+# Install Python libraries into virtual env
 [phases.install]
 cmds = [
     "python3 -m venv .venv",
     ".venv/bin/pip install -r backend/requirements.txt"
 ]
 
-# OVERRIDE the build phase to do nothing (prevents Deno error)
+# Skip Deno build (Fixes Supabase error)
 [phases.build]
 cmds = []
 
-# Force the correct Start Command using the virtual environment
+# Start the app correctly
 [phases.start]
 cmd = "/app/.venv/bin/gunicorn --chdir backend app:app"
