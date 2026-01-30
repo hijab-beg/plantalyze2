@@ -9,8 +9,8 @@ flask-cors==4.0.0
 gunicorn==21.2.0
 
 # Deep Learning - TensorFlow (for UNet)
-tensorflow-cpu==2.15.0
-keras==2.15.0
+tensorflow-cpu==2.17.0
+keras==3.0.0
 
 # Deep Learning - PyTorch (for ShuffleNet)
 torch==2.1.0
