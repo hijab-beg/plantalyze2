@@ -1,1 +1,1 @@
-web: cd backend && gunicorn app:app
+web: /app/.venv/bin/gunicorn --chdir backend app:app

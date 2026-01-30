@@ -1,0 +1,19 @@
+# Setup: Install Python and the missing C++ libraries
+[phases.setup]
+nixPkgs = ["python311", "gcc-unwrapped"]
+aptPkgs = ["libstdc++6", "libgl1", "libglib2.0-0", "libsm6", "libxext6", "libxrender1"]
+
+# Install: Create virtual env and install Python libraries
+[phases.install]
+cmds = [
+    "python3 -m venv .venv",
+    ".venv/bin/pip install -r backend/requirements.txt"
+]
+
+# Build: Skip Deno/Node builds (Fixes Supabase interference)
+[phases.build]
+cmds = []
+
+# Start: Run Gunicorn from the virtual environment
+[phases.start]
+cmd = "/app/.venv/bin/gunicorn --chdir backend app:app"
