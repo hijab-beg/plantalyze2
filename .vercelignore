@@ -1,0 +1,61 @@
+# Files to exclude from Vercel deployment
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Local environment
+.env
+.env.local
+.env.*.local
+venv/
+env/
+ENV/
+
+# Backend files (already in /api)
+backend/app.py
+backend/start_backend.bat
+backend/start_backend.sh
+backend/test_api.py
+backend/test_setup.py
+
+# Development files
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# Documentation for other platforms
+RAILWAY_DEPLOYMENT.md
+BACKEND_SETUP.md
+
+# Jupyter notebooks
+*.ipynb
+.ipynb_checkpoints/
+
+# Git
+.git/
+.gitignore
+
+# Node modules (not needed on server)
+node_modules/

@@ -107,10 +107,12 @@ const Dashboard = () => {
     try {
       const base64Data = previewUrl.split(",")[1];
       
-      // Call Python Flask backend directly
-      const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+      // Call Python Flask backend - uses /api for Vercel serverless functions
+      // For Vercel: VITE_BACKEND_URL should be your Vercel domain (e.g., https://your-app.vercel.app)
+      // For local dev: Leave empty to use same origin, or set to http://localhost:5000
+      const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "";
       
-      const response = await fetch(`${BACKEND_URL}/analyze`, {
+      const response = await fetch(`${BACKEND_URL}/api/analyze`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -137,7 +139,7 @@ const Dashboard = () => {
     } catch (error: any) {
       console.error("Analysis error:", error);
       if (error.message?.includes("Failed to fetch")) {
-        toast.error("Cannot connect to backend. Make sure the Python server is running on http://localhost:5000");
+        toast.error("Cannot connect to backend API. Please check your deployment or local server.");
       } else {
         toast.error(error.message || "Failed to analyze image. Please try again.");
       }

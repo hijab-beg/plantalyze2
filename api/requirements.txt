@@ -1,0 +1,24 @@
+# Python Dependencies for Plantalyze Backend (Vercel Serverless)
+# Optimized for serverless deployment
+
+# Web Framework
+flask==3.0.0
+flask-cors==4.0.0
+
+# Deep Learning - TensorFlow (for UNet)
+# Use lighter version for serverless
+tensorflow-cpu==2.15.0
+
+# Computer Vision
+opencv-python-headless==4.8.1.78
+# Headless version is lighter and works better in serverless
+
+# Image Processing
+Pillow==10.1.0
+scikit-image==0.22.0
+
+# Numerical Computing
+numpy==1.24.3
+
+# Utilities
+python-dotenv==1.0.0
