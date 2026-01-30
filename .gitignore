@@ -38,15 +38,9 @@ venv/
 env/
 ENV/
 
-# ML Models (too large for git)
-backend/*.h5
-backend/*.pth
-backend/*.pt
-backend/*.onnx
-*.h5
-*.pth
-*.pt
-*.onnx
+# ML Models tracked by Git LFS
+# *.pt
+# *.onnx
 
 # Temporary files
 *.tmp

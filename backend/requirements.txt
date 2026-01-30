@@ -1,5 +1,6 @@
 # Python Dependencies for Plantalyze Backend
 # Install with: pip install -r requirements.txt
+# Updated for Railway deployment
 
 --extra-index-url https://download.pytorch.org/whl/cpu
 
