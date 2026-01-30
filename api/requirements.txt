@@ -7,7 +7,7 @@ flask-cors==4.0.0
 
 # Deep Learning - TensorFlow (for UNet)
 # Use lighter version for serverless
-tensorflow-cpu==2.15.0
+tensorflow-cpu==2.17.0
 
 # Computer Vision
 opencv-python-headless==4.8.1.78
